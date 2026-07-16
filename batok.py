@@ -380,8 +380,8 @@ def main():
     group.add_argument("--webcam", action="store_true", help="Gunakan webcam realtime")
 
     parser.add_argument("--camera-id", type=int, default=0, help="ID webcam (default 0)")
-    parser.add_argument("--infer-interval", type=float, default=5.0,
-                         help="Jeda antar inference AI dalam detik, untuk mode video/webcam (default 5.0)")
+    parser.add_argument("--infer-interval", type=float, default=3.0,
+                         help="Jeda antar inference AI dalam detik, untuk mode video/webcam (default 3.0)")
     parser.add_argument("--save-video", action="store_true",
                          help="Simpan video hasil anotasi ke folder Output (mode video/webcam)")
     parser.add_argument("--max-frames", type=int, default=None,
