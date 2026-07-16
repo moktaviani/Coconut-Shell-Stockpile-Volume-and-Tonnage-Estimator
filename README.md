@@ -20,7 +20,7 @@ STOCKPILE-BATOK-KELAPA/
 ├── batokbesar.png          # Sample input image (large pile)
 ├── batokkecil.png          # Sample input image (small pile)
 ├── batoksedang.png         # Sample input image (medium pile)
-└── vidbatok.mp4            # Sample input video
+└── testvideo.mp4           # Sample input video
 ```
 
 ## Installation
@@ -68,7 +68,7 @@ python batok.py --video path/to/video.mp4 --save-video --max-frames 900
 | `--video` | Path to an input video file | — |
 | `--webcam` | Use a live webcam feed | — |
 | `--camera-id` | Webcam device ID | `0` |
-| `--infer-interval` | Seconds between AI inference runs (video/webcam mode) | `5.0` |
+| `--infer-interval` | Seconds between AI inference runs (video/webcam mode) | `3.0` |
 | `--save-video` | Save an annotated output video to `Output/` | off |
 | `--max-frames` | Limit the number of frames processed (video mode) | none |
 
@@ -95,11 +95,43 @@ Depending on the mode, results are saved to the `Output/` folder:
 - **Image mode**: `<name>_depthmap.png`, `<name>_roi.png`, `<name>_heightmap.png`
 - **Video/webcam mode**: `<name>_log.csv` (timestamped volume/tonnage log) and, if `--save-video` is set, `<name>_annotated.mp4`
 
-### Sample Results
+### Sample Results (Image Mode)
 
 | Original ROI | Depth Map | Height Map |
 |---|---|---|
 | ![ROI](Output/batokbesar_roi.png) | ![Depth](Output/batokbesar_depthmap.png) | ![Height](Output/batokbesar_heightmap.png) |
+
+```bash
+============================================================
+ COCONUT SHELL STOCKPILE ESTIMATION RESULTS
+============================================================
+ Camera-to-Base Distance : 2.83 m
+ Camera Tilt Angle       : 45.0°
+ Estimated Volume        : 2.43 m³
+ Estimated Tonnage       : 1.12 ton
+ Maximum Height          : 0.85 m
+ Average Height          : 0.55 m
+ Density Used            : 0.46 t/m³
+============================================================
+
+Visualization files saved to:
+  - Output/image_depthmap.png
+  - Output/image_roi.png
+  - Output/image_heightmap.png
+```
+
+### Sample Results (Video Mode)
+
+| Time (s) | Volume (m³) | Tonnage (ton) | Max Height (m) | Mean Height (m) |
+|---------:|------------:|--------------:|---------------:|----------------:|
+| 0.00 | 1.608 | 0.739 | 0.862 | 0.514 |
+| 3.00 | 1.764 | 0.811 | 0.885 | 0.517 |
+| 6.00 | 1.736 | 0.798 | 0.831 | 0.480 |
+| 9.00 | 1.897 | 0.873 | 0.796 | 0.525 |
+| 12.00 | 2.378 | 1.094 | 0.859 | 0.578 |
+| 15.00 | 2.396 | 1.102 | 0.849 | 0.557 |
+
+> The complete log is saved as `Output/video_log.csv`.
 
 ## Notes & Limitations
 
